@@ -17,39 +17,34 @@ async function fetchDisneyCharacter(name){
 function searchDisneyCharacters(){
   const searchInput = document.createElement("input");
   const container = document.getElementById("app");
+  const filmList = document.createElement("ul");
+
+  const button = document.querySelector("button")
   
-  
-  const button = document.querySelector("button");
-  
-  button.addEventListener("click", async function(event){
+  searchInput.addEventListener("click", async function(event){
     console.log(event.target.value)
     const character = await fetchDisneyCharacter(event.target.value);
     if(character){
-      console.log(event.target.value)
-      if(character.name == event.target.value){
-        
-        for(let i = 0; i < character.data.length; i++){
-          // console.log(character.data[i])
-          const currentCharacter = character.data[i]
-          if(currentCharacter.films && currentCharacter.films.length > 0){
-            console.log(currentCharacter.films) //loop through obj films array
-            //add for loop
-            for(let j = 0; j < currentCharacter.films.length; j++){
-              const filmItem = document.createElement("li")
-              filmItem.innerText = currentCharacter.films[j]
-              filmList.append(filmItem)
-            }
-            document.body.appendChild(filmList)
-            //for each film in film array, add new element to page with text (Film title)
-            //create element
-            //innerhtml
-          }
-        }
-      }
       // console.log(character)
       // pull data from character
       // loop through character.data
-      
+      for(let i = 0; i < character.data.length; i++){
+        // console.log(character.data[i])
+        const currentCharacter = character.data[i]
+        if(currentCharacter.films && currentCharacter.films.length > 0){
+          console.log(currentCharacter.films) //loop through obj films array
+          //add for loop
+          for(let j = 0; j < currentCharacter.films.length; j++){
+            const filmItem = document.createElement("li")
+            filmItem.innerText = currentCharacter.films[j]
+            filmList.append(filmItem)
+          }
+          document.body.appendChild(filmList)
+          //for each film in film array, add new element to page with text (Film title)
+          //create element
+          //innerhtml
+        }
+      }
       // create list - append list to container
       // 
     }
